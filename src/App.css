@@ -1,0 +1,35 @@
+.App {
+  text-align: center;
+}
+
+.parent-logo {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  width: 200px;
+  height: 100px;
+  padding: 10px;
+  background-color: whitesmoke;
+}
+
+.search-box {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 400px) {
+  .parent-logo {
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+  }
+  .logo {
+    width: 100px;
+    height: 50px;
+    padding: 10px;
+    background-color: whitesmoke;
+  }
+}

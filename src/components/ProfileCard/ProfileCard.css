@@ -1,0 +1,53 @@
+.ProfileCard {
+  display: flex;
+  height: 400px;
+  background-color: black;
+  border: 3px solid grey;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  perspective: 1000px;
+}
+
+.profile-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.profile-card-front,
+.profile-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.profile-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.profile-card-back {
+  background-color: #2980b9;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.ProfileCard:hover .profile-card-inner {
+  transform: rotateY(180deg);
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 400px) {
+}
