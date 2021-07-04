@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import { ReactComponent as BreakingBadLogo } from "./assets/Breaking_Bad_logo.svg";
 import SearchBox from "./components/SearchBox/SearchBox";
 import ProfileCardList from "./components/ProfileCardList/ProfileCardList";
+import Pagination from "./components/Pagination/Pagination";
 import "./App.css";
 
 function App() {
   const [searchField, setSearchField] = useState("");
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [charactersPerPage] = useState(8);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [charactersPerPage] = useState(8);
 
   const onSearchChange = (e) => {
     setSearchField(e.target.value);
@@ -31,13 +32,6 @@ function App() {
     return () => (mounted = false);
   }, []);
 
-  // const indexOfLastCharacter = currentPage * charactersPerPage;
-  // const indexOfFirstCharacter = indexOfLastCharacter - charactersPerPage;
-  // const currentCharacters = filteredCharacters.slice(
-  //   indexOfFirstCharacter,
-  //   indexOfLastCharacter
-  // );
-
   const filteredCharacters = characters.filter((character) => {
     if (searchField === "") {
       return character;
@@ -47,6 +41,15 @@ function App() {
       return character;
     }
   });
+
+  const indexOfLastCharacter = currentPage * charactersPerPage;
+  const indexOfFirstCharacter = indexOfLastCharacter - charactersPerPage;
+  const currentCharacters = filteredCharacters.slice(
+    indexOfFirstCharacter,
+    indexOfLastCharacter
+  );
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="App">
@@ -68,8 +71,13 @@ function App() {
           style={{ width: "250px", height: "250px" }}
         ></lord-icon>
       ) : (
-        <ProfileCardList characters={filteredCharacters} />
+        <ProfileCardList characters={currentCharacters} />
       )}
+      <Pagination
+        charactersPerPage={charactersPerPage}
+        totalCharacters={characters.length}
+        paginate={paginate}
+      />
     </div>
   );
 }
