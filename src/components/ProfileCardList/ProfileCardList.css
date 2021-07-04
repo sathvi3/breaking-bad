@@ -6,7 +6,23 @@
   grid-gap: 20px;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 1024px) {
+  .ProfileCardList {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .ProfileCardList {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+  }
+}
+
+@media screen and (max-width: 600px) {
   .ProfileCardList {
     display: flex;
     flex-direction: column;

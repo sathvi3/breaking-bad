@@ -7,6 +7,9 @@ import "./App.css";
 function App() {
   const [searchField, setSearchField] = useState("");
   const [characters, setCharacters] = useState([]);
+  const [loading, setLoading] = useState(true);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [charactersPerPage] = useState(8);
 
   const onSearchChange = (e) => {
     setSearchField(e.target.value);
@@ -14,16 +17,26 @@ function App() {
 
   useEffect(() => {
     let mounted = true;
-    fetch("https://www.breakingbadapi.com/api/characters/")
-      .then((response) => response.json())
-      .then((list) => {
-        if (mounted) {
-          setCharacters(list);
-        }
-      });
+    setTimeout(() => {
+      fetch("https://www.breakingbadapi.com/api/characters/")
+        .then((response) => response.json())
+        .then((list) => {
+          if (mounted) {
+            setCharacters(list);
+          }
+        });
+      setLoading(false);
+    }, 2000);
 
     return () => (mounted = false);
   }, []);
+
+  // const indexOfLastCharacter = currentPage * charactersPerPage;
+  // const indexOfFirstCharacter = indexOfLastCharacter - charactersPerPage;
+  // const currentCharacters = filteredCharacters.slice(
+  //   indexOfFirstCharacter,
+  //   indexOfLastCharacter
+  // );
 
   const filteredCharacters = characters.filter((character) => {
     if (searchField === "") {
@@ -46,7 +59,17 @@ function App() {
           onSearchChange={onSearchChange}
         />
       </div>
-      <ProfileCardList characters={filteredCharacters} />
+      {loading === true ? (
+        // <LoadingIcon className="loading-icon" />
+        <lord-icon
+          src="https://cdn.lordicon.com/hbjlznlo.json"
+          trigger="loop"
+          colors="primary:#121331,secondary:#08a88a"
+          style={{ width: "250px", height: "250px" }}
+        ></lord-icon>
+      ) : (
+        <ProfileCardList characters={filteredCharacters} />
+      )}
     </div>
   );
 }

@@ -20,7 +20,13 @@
   justify-content: center;
 }
 
-@media screen and (max-width: 400px) {
+.loading-icon {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 100px;
+}
+
+@media screen and (max-width: 600px) {
   .parent-logo {
     margin-top: 5px;
     display: flex;
