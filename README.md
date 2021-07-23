@@ -1,4 +1,4 @@
-Deployed Link : https://pedantic-payne-12d854.netlify.app/
+Deployed Link : https://breaking-bad-zz.netlify.app/
 
 # Getting Started with Create React App
 
